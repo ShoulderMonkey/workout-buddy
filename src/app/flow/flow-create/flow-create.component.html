@@ -1,0 +1,30 @@
+
+<form [formGroup]="form" class="form-container">
+    <mat-form-field appearance="outline">
+        <mat-label>{{'Flow.Detail.Description' | translate}}</mat-label>
+        <input matInput formControlName="description">
+    </mat-form-field>
+
+    <div formArrayName="routines" class="routines-container">
+        <div *ngFor="let routine of routinesGroup">
+            <form [formGroup]="routine">
+                <mat-card class="routine-container">
+                    <mat-card-content>
+                        <mat-form-field>
+                            <mat-label>{{'Routine.Detail.Description'|translate}}</mat-label>
+                            <input matInput formControlName="description">
+                        </mat-form-field>
+
+                        <div class="time-input-container" >
+                            <div class="click-overlay" (click)="openEditDialog(routine)"></div>
+                            <app-time-input class="app-child" formControlName="durationInMs"></app-time-input>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+    </div>
+
+    <button mat-fab (click)="addRoutine()">add</button>
+
+</form>

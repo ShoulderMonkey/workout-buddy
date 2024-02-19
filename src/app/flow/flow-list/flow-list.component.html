@@ -1,0 +1,27 @@
+
+<div class="cards-container">
+
+
+<mat-card *ngFor="let flow of flows" (click)="openFlow(flow)">
+   <mat-card-header>
+    <mat-card-title>{{flow.description}}</mat-card-title>
+    <mat-card-subtitle>{{flow.createdAt | date}}</mat-card-subtitle>
+   </mat-card-header>
+   <mat-card-content>
+        someContent
+   </mat-card-content>
+   <mat-card-actions class="actions-container">
+    <button mat-raised-button color="warn" (click)="deleteOne(flow)"><mat-icon>delete</mat-icon>{{'Actions.Delete' | translate}}</button>
+    <button mat-flat-button (click)="navigateToEdit(flow)"><mat-icon>edit</mat-icon>{{'Actions.Edit' | translate}}</button>
+   </mat-card-actions>
+</mat-card>
+
+</div>
+
+<div class="bottom-button">
+    <button mat-fab (click)="navigateToNew()">
+        <mat-icon>
+            add
+        </mat-icon>
+    </button>
+</div>

@@ -1,0 +1,4 @@
+<svg #svgRef (mousedown)="startDragging($event)" (touchstart)="startDragging($event)">
+    <circle class="slider-path" [attr.cx]="centerX" [attr.cy]="centerY" [attr.r]="radius" />
+    <circle class="slider-handle" #sliderHandle [attr.cx]="handlePosition.x" [attr.cy]="handlePosition.y" r="10"/>
+</svg>

@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+<div class="container">
+    <div class="time-input">
+        <app-time-input [ngModel]="value" (ngModelChange)="onInputValueChange($event)"></app-time-input>
+    </div>
+    <app-circular-slider [min]="0" [max]="60000" [formControl]="control"></app-circular-slider>
+</div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="confirm(false)">No</button>
+    <button mat-button (click)="confirm(true)" cdkFocusInitial>Ok</button>
+</div>

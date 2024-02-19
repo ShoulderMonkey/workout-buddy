@@ -1,0 +1,36 @@
+svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  display: block; /* To prevent default inline behavior which can add unwanted space */
+  cursor: pointer;
+}
+  
+  .slider-handle {
+    transition: fill 0.2s ease-in-out, stroke 0.2s ease, filter 0.2s;
+    fill: #007bff; /* Bootstrap primary blue */
+    stroke: #0056b3; /* Darker blue for border */
+    stroke-width: 2px;
+    cursor: pointer; /* Change cursor to indicate it's draggable */
+    
+    /* Add a shadow for depth */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
+  .slider-handle:hover, .slider-handle.active {
+    fill: #0056b3; /* Darker on hover/active */
+  }
+  
+  /* Or if toggling classes via JS */
+  .slider-handle-hover, .slider-handle-active {
+    fill: #0056b3; /* Darker on hover/active */
+  }
+
+  .slider-path {
+    fill: none;
+    stroke: #aaa; /* Light grey path */
+    stroke-width: 10px;
+  }
+
+  
+  

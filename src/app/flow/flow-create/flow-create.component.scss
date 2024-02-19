@@ -1,0 +1,53 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    padding:10px;
+    align-items: center;
+}
+
+.routines-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.routine-container{
+    width: 100%;
+
+}
+
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    mat-form-field, app-duration-selector{
+        width:100%
+    }
+}
+
+.time-input-container{
+    padding: 10px;
+    width: 60%;
+    cursor: pointer;
+    position: relative;
+}
+
+
+  
+  .click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Higher than any child content */
+    background-color: transparent; /* Invisible overlay */
+  }
+  
+  /* Ensure child components or elements have a lower z-index */
+  .app-child {
+    position: relative;
+    z-index: 0; /* Ensure this is below the overlay */
+  }

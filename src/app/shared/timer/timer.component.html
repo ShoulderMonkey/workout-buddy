@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="time-input">
+        <app-time-input [ngModel]="value" (ngModelChange)="onInputValueChange($event)"></app-time-input>
+    </div>
+    <app-circular-slider [min]="0" [max]="initialValue" [formControl]="control"></app-circular-slider>
+</div>

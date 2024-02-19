@@ -1,0 +1,10 @@
+<button (click)="start()">start</button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Titolo
+        </mat-card-title>
+
+        <app-timer (timerCompleted)="onTimerCompleted($event)" [initialValue]="100000"></app-timer>
+    </mat-card-header>
+</mat-card>
