@@ -13,23 +13,25 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 })
 export class FlowListComponent {
 
-  flows: Flow[]
+  flows: Flow[] = []
 
   constructor(
     private configService: ConfigService,
     private dialog: MatDialog,
     private router: Router
   ){
-    this.flows = this.configService.getAllFlows()
+    this.configService.getAllFlows().then(flows => {
+      this.flows = flows
+    })
   }
 
   deleteOne(flow: Flow){
     this.dialog.open(ConfirmationDialogComponent, {
       data: `Sei sicuro di voler cancellare questo flow? --> ${flow.description}`
-    }).afterClosed().subscribe(res => {
+    }).afterClosed().subscribe(async res => {
       if(res){
         this.configService.deleteFlowById(flow.id)
-        this.flows = this.configService.getAllFlows()
+        this.flows = await this.configService.getAllFlows()
       }
     })
   }

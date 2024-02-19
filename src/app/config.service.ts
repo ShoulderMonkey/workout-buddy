@@ -10,9 +10,10 @@ import { Flow } from './model/flow';
 export class ConfigService {
 
   private config!: ConfigFile
+  private configLoaded: Promise<void>;
 
   constructor(private translate: TranslateService) {
-    this.loadConfig()
+    this.configLoaded = this.loadConfig()
   }
 
   private async loadConfig(){
@@ -41,26 +42,31 @@ export class ConfigService {
 
 
 
-  getAllFlows(){
+  async getAllFlows(){
+    await this.configLoaded;
     return this.config.flows.sort((a,b) => a.createdAt - b.createdAt)
   }
 
-  findFlowById(id: string){
+  async findFlowById(id: string){
+    await this.configLoaded;
     return this.config.flows.find(flow => flow.id === id)
   }
 
-  updateFlow(flow: Flow){
+  async updateFlow(flow: Flow){
+    await this.configLoaded;
     const index = this.config.flows.findIndex(f => f.id === flow.id)
     this.config.flows[index] = flow
     this.saveConfig(this.config)
   }
 
-  addFlow(flow: Flow){
+  async addFlow(flow: Flow){
+    await this.configLoaded;
     this.config.flows.push(flow)
     this.saveConfig(this.config)
   }
 
-  deleteFlowById(id: string){
+  async deleteFlowById(id: string){
+    await this.configLoaded;
     this.config.flows = this.config.flows.filter(flow => flow.id !== id)
     this.saveConfig(this.config)
   }
