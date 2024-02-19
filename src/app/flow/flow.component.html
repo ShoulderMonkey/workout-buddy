@@ -1,10 +1,27 @@
-<button (click)="start()">start</button>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            Titolo
-        </mat-card-title>
 
-        <app-timer (timerCompleted)="onTimerCompleted($event)" [initialValue]="100000"></app-timer>
-    </mat-card-header>
-</mat-card>
+<div class="flow-main-container">
+    <h1>{{flow?.description}}</h1>
+    <div *ngFor="let routine of flow?.routines; let i = index">
+    <mat-card [ngClass]="getCardClass(i)">
+        <mat-card-header>
+            <mat-card-title>
+                {{routine?.description}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content [ngClass]="getCardClass(i)">
+            <app-timer (timerCompleted)="onTimerCompleted($event)" [initialValue]="routine?.durationInMs!"></app-timer>
+        </mat-card-content>
+    </mat-card>
+    </div>
+</div>
+<div class="flow-buttons-container">
+    <button mat-fab (click)="pause()" [disabled]="!isCounting">
+        <mat-icon>pause</mat-icon>
+    </button>
+    <button mat-fab (click)="start()" [disabled]="isCounting">
+        <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button mat-fab (click)="stop()">
+        <mat-icon>stop</mat-icon>
+    </button>
+</div>

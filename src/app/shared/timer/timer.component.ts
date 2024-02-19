@@ -11,10 +11,10 @@ export class TimerComponent implements AfterViewInit{
   @Input() updatingInterval: number = 100
   @Output() timerCompleted: EventEmitter<any> = new EventEmitter();
 
-
   value!: number
   control: FormControl = new FormControl()
 
+  intervalId: any
   constructor(){
     
   }
@@ -27,7 +27,6 @@ export class TimerComponent implements AfterViewInit{
     this.value = this.initialValue
     this.control.disable()
     console.log(this.initialValue);
-      
   }
 
   onInputValueChange(value: number) {
@@ -42,16 +41,20 @@ export class TimerComponent implements AfterViewInit{
         if (this.value <= 0) {
           this.value = 0
           console.log("Timer ended.");
-          clearInterval(intervalId);
+          clearInterval(this.intervalId);
           this.timerCompleted.emit('Timer has completed!'); // Emit the completion event
         }
       };
   
       // Start the timer
-      const intervalId = setInterval(updateTimer, 1000);
+      this.intervalId = setInterval(updateTimer, 1000);
   
       // Optionally, return a function to stop the timer
-      return () => clearInterval(intervalId);
+      return () => clearInterval(this.intervalId);
+    }
+
+    stopTimer(){
+      clearInterval(this.intervalId)
     }
 // Call the update function every 1000 milliseconds (1 second)
 }
