@@ -2,6 +2,8 @@ import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@a
 import { TimerComponent } from '../shared/timer/timer.component';
 import { ActivatedRoute } from '@angular/router';
 import { Flow, Routine } from '../model/flow';
+import { MatDialog } from '@angular/material/dialog';
+import { FlowEndDialogComponent } from './flow-end-dialog/flow-end-dialog.component';
 
 @Component({
   selector: 'app-flow',
@@ -16,7 +18,8 @@ export class FlowComponent implements AfterViewInit {
   currentRoutineIndex: number = 0
   currentTimer:any
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ){
     route.data.subscribe({
       next: (data => {
@@ -65,9 +68,18 @@ export class FlowComponent implements AfterViewInit {
   }
 
   onTimerCompleted(event: any){
-    this.currentRoutineIndex++;
-    this.currentTimer = this.timers.get(this.currentRoutineIndex)
-    this.currentTimer.startTimer()
-    //this.currentTimer.ngAfterViewInit()
+    if(this.currentRoutineIndex+1 === this.timers.length){
+      //end flow
+      this.isCounting = false;
+      this.dialog.open(FlowEndDialogComponent).afterClosed().subscribe(res => {
+        window.location.reload()
+      })
+
+    }else{
+      this.currentRoutineIndex++;
+
+      this.currentTimer = this.timers.get(this.currentRoutineIndex)
+      this.currentTimer.startTimer()
+    }
   }
 }

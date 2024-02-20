@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { NgxCircularSliderModule } from 'ngx-circular-slider';
 import { DurationSelectorComponent } from './flow-create/duration-selector/duration-selector.component';
+import { FlowEndDialogComponent } from './flow-end-dialog/flow-end-dialog.component';
 
 
 const MATERIAL_MODULES = [
@@ -31,7 +32,8 @@ const MATERIAL_MODULES = [
     FlowComponent,
     FlowListComponent,
     FlowCreateComponent,
-    DurationSelectorComponent
+    DurationSelectorComponent,
+    FlowEndDialogComponent
     
   ],
   imports: [
